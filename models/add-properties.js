@@ -55,6 +55,16 @@ const postSchema = new mongoose.Schema({
   landmark: String,
   lalitude: String,
   longitude: String,
+  ppdId: { required: true, type: String },
+    views: { required: true, type: String },
+    daysLeft: { required: true, type: String },
+
+    siteImage: { type: String },
+    status: { type: String, default: "Unsold" },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }
 });
 
 const postModal = mongoose.model("post", postSchema);
