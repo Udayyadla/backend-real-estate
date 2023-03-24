@@ -9,11 +9,15 @@ const postModal = require("./models/add-properties");
 app.use(express.json())
 const userRouter=require("./routes/add-property")
 // app.use(bodyParser)
+const signup = require("./routes/signup");
+const signin = require("./routes/signin");
 
 conn()
   .then(() => console.log("mongodb connected"))
   .catch((err) => console.log(err));
 app.use("/",userRouter)
+app.use("/signup", signup)
+app.use("/", signin)
 app.listen(port, () => {
   console.log(`app is running at port ${port}`);
 });
