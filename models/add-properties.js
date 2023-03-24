@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const postSchema = new mongoose.Schema({
   PropertyType: {
     type: String,
-    required:true
+ 
     
   },
   Negotiable: {
     type: String,
-    required:true,
+
    
   },
   Price: {
     type:String,
-  required:true
+ 
 },
   Ownership: {
     type: String,
