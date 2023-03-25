@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const Property = require('../models/add-properties')
 const router = require("express").Router();
+
 router.post('/property', async (req, resp) => {
 
     console.log(req.body)

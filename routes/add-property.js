@@ -58,23 +58,6 @@ router.post("/adding", (req, res) => {
       });
   });
 
-  // router.get('/a', async (req, resp) => {
-  //   try {
-  //       let allproperties = await postModal.find();
-  //       if (allproperties.length > 0) {
-  //           resp.send(allproperties)
-  //           console.log(allproperties)
-
-  //       }
-  //       else {
-  //           resp.send({ message: "no product found" })
-  //       }
-  //   }
-  //   catch {
-  //       resp.status(400).json({ message: "somthing went wrong" })
-  //   }
-// })
-
 router.put("/:id", async (req, resp) => {
   try{
 
@@ -89,20 +72,6 @@ router.put("/:id", async (req, resp) => {
   catch{
       resp.status(400).json({ message: "error in upadating" })
   }
-})
-router.get('/:key', async (req, resp) => {
-  let result = await postModal.find(
-      {
-          "$or": [
-              {contact: {$regex:req.params.key } },
-              {property: {$regex:req.params.key } },
-              {area: {$regex:req.params.key } }
-          ]
-      }
-  )
-  resp.send(result)
-  console.log(result)
-  console.log(req.params.key)
 })
   
   module.exports=router
