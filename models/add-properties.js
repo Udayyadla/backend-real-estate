@@ -1,60 +1,7 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-//   PropertyType: {
-//     type: String,
- 
-    
-//   },
-//   Negotiable: {
-//     type: String,
 
-   
-//   },
-//   Price: {
-//     type:String,
- 
-// },
-//   Ownership: {
-//     type: String,
-  
-//   },
-//   PropertyAge: {
-//     type: String,
-
-//   },
-//   PropertyApproved: String,
-//   PropertyDiscription: String,
-//   BankLoan: {
-//     type: String,
-//   },
-//   length: String,
-//   Breath: String,
-//   Area: String,
-//   AreaUnit: String,
-//   bhk: String,
-//   floor: String,
-//   Furnished: String,
-//   car: String,
-//   Lift: String,
-//   Electricity: String,
-//   Facing: String,
-//   name: String,
-//   mobile: String,
-//   poster: String,
-//   sale: String,
-//   fp: String,
-//   Pp: String,
-//   postImage: String,
-//   Email: String,
-//   city: String,
-//   area: String,
-//   pincode: String,
-//   Address: String,
-//   landmark: String,
-//   lalitude: String,
-//   longitude: String,
-// });
 
     //models
     propertyType:{ type: String},
