@@ -1,61 +1,38 @@
-const express=require("express")
-const router=express.Router();
-const postModal=require("../models/add-properties")
-router.post("/adding", (req, res) => {
-    console.log(req.body);
-    postModal
-      .create({
-        PropertyType: req.body.PropertyType,
-        Negotiable: req.body.Negotiable,
-        Price: req.body.Price,
-        Ownership: req.body.Ownership,
-        PropertyAge: req.body.PropertyAge,
-        PropertyApproved: req.body.PropertyApproved,
-        PropertyDiscription: req.body.PropertyDiscription,
-        BankLoan: req.body.BankLoan,
-        length: req.body.length,
-        Breadth: req.body.Breadth,
-        Area: req.body.Area,
-        AreaUnit: req.body.AreaUnit,
-        bhk: req.body.bhk,
-        floor: req.body.floor,
-        Furnished: req.body.Furnished,
-        car: req.body.car,
-        Lift: req.body.Lift,
-        Electricity: req.body.Electricity,
-        Facing: req.body.Facing,
-        name: req.body.name,
-        mobile: req.body.mobile,
-        poster: req.body.poster,
-        sale: req.body.sale,
-        fp: req.body.fp,
-        Pp: req.body.Pp,
-        postImage: req.body.postImage,
-        Email: req.body.Email,
-        city: req.body.city,
-        area: req.body.area,
-        pincode: req.body.pincode,
-        Address: req.body.Address,
-        landmark: req.body.landmark,
-        lalitude: req.body.lalitude,
-        longitude: req.body.longitude,
-      })
-      .then((data) => {
-        res.status(200).send(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-  router.get("/posts", (req, res) => {
-    postModal
-      .find()
-      .then((data) => {
-        res.status(200).send(data);
-      })
-      .catch((err) => {
-        res.status(400).send(err);
-      });
-  });
-  
-  module.exports=router
+const User = require("../models/user");
+const Property = require("../models/add-properties");
+const router = require("express").Router();
+
+router.post("/property", async (req, resp) => {
+  console.log(req.body);
+
+  try {
+    const ppd_id = "PPID" + Math.floor(1000 + Math.random() * 9000);
+    const views = parseInt(Math.random() * 10);
+    const daysLeft = parseInt(Math.random() * 20);
+    const { email } = req.body;
+
+    let user = await User.findOne({ email });
+    const property = await Property.create({
+      ppdId: ppd_id,
+      views: views,
+      daysLeft: daysLeft,
+      userId: user._id,
+      ...req.body, // taking all fields from user
+    });
+
+    user.properties.push(property);
+    await user.save();
+    resp.status(200).json({
+      status: "Success",
+      property: property,
+    });
+  } catch (error) {
+    console.log(error);
+    resp.status(400).json({
+      status: "failed",
+      message: error.message,
+    });
+  }
+});
+
+module.exports = router;
