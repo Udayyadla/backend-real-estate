@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const property = require("../models/add-properties")
-
+//for search
 router.get("/search/:id", async(req,res)=>{
     try {
         const userList = await property.findOne({ppdId:(req.params.id).toUpperCase()})
