@@ -11,6 +11,7 @@ const userRouter=require("./routes/add-property")
 // app.use(bodyParser)
 const signup = require("./routes/signup");
 const signin = require("./routes/signin");
+const logout = require("./routes/logout");
 
 conn()
   .then(() => console.log("mongodb connected"))
@@ -18,6 +19,8 @@ conn()
 app.use("/",userRouter)
 app.use("/signup", signup)
 app.use("/", signin)
+app.use("/", logout)
+
 app.listen(port, () => {
   console.log(`app is running at port ${port}`);
 });
