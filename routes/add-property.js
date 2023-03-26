@@ -21,6 +21,7 @@ router.post("/property", async (req, resp) => {
     });
 
     user.properties.push(property);
+    console.log(user.property);
     await user.save();
     resp.status(200).json({
       status: "Success",
